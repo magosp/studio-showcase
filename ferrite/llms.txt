@@ -1,0 +1,16 @@
+# Ferrite
+
+> Ferrite is an append-only event log with a schema registry built in. Every event is validated against a versioned type before it is written. At-least-once delivery, tunable to exactly-once per partition. Replay any consumer from an offset .
+
+## Pages
+
+- [Home](index.html) — Ferrite is an append-only event log with a schema registry built in.
+  - [What it guarantees](index.html#props-h)
+  - [Capability matrix](index.html#cmp-h)
+  - [Publish a typed event](index.html#code-h)
+- [Engine](engine.html) — Five stages sit between publish() and a durable, replayable record.
+  - [Durability guarantees](engine.html#guar-h)
+  - [Limits & specifications](engine.html#spec-h)
+- [Pricing](pricing.html) — Priced on provisioned throughput and retention, not on a per-message meter that punishes success.
+  - [Feature matrix](pricing.html#mtx-h)
+  - [FAQ](pricing.html#faq-h)

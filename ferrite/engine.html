@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ferrite — the engine, guarantees & limits</title>
+<meta name="description" content="How Ferrite works: append, validate against the registry, replicate, index offsets, serve. Durability guarantees and hard limits, stated exactly.">
+<link rel="stylesheet" href="./style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://magosp.github.io/studio/ferrite/engine.html",
+      "url": "https://magosp.github.io/studio/ferrite/engine.html",
+      "name": "Ferrite — the engine, guarantees & limits",
+      "description": "Five stages sit between publish() and a durable, replayable record.",
+      "isPartOf": {
+        "@id": "https://magosp.github.io/studio/ferrite#website"
+      },
+      "publisher": {
+        "@id": "https://magosp.github.io/studio/ferrite#organization"
+      }
+    }
+  ]
+}
+</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topnav">
+  <div class="wrap">
+    <span class="brand">Ferrite<span class="dot">.</span></span>
+    <span class="ver">v2.3</span>
+    <nav aria-label="Primary">
+      <a href="./index.html">Home</a>
+      <a href="./engine.html" aria-current="page">Engine</a>
+      <a href="./pricing.html">Pricing</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="wrap" aria-labelledby="eng-h">
+    <p class="eyebrow">Architecture</p>
+    <h1 id="eng-h">How Ferrite works</h1>
+    <p class="lede">Five stages sit between <span class="mono">publish()</span> and a durable, replayable
+      record. Each one is a place a message queue usually cuts a corner; Ferrite does not.</p>
+    <ol class="steps">
+      <li><h3>Append</h3><p>The event is appended to the partition's write-ahead segment. Writes are
+        sequential; the offset is assigned atomically and returned to the producer.</p></li>
+      <li><h3>Validate against the registry</h3><p>Before the write commits, the payload is checked against
+        the referenced schema version. A contract violation is rejected with the failing field path.</p></li>
+      <li><h3>Replicate</h3><p>The segment is replicated to <span class="mono">N</span> followers. A write
+        acks only after the configured quorum has the record on disk (<span class="mono">acks=quorum</span>).</p></li>
+      <li><h3>Index offsets</h3><p>A sparse index maps offsets and timestamps to segment positions, so a
+        replay from an arbitrary offset is a seek, not a scan.</p></li>
+      <li><h3>Serve</h3><p>Consumer groups read forward from their committed offset. Rewinding is a commit
+        of an earlier offset — the log itself never mutates.</p></li>
+    </ol>
+  </section>
+
+  <section class="wrap" aria-labelledby="guar-h">
+    <h2 id="guar-h">Durability guarantees</h2>
+    <p class="muted">What holds under each acknowledgement mode. Choose the row that matches your tolerance
+      for latency versus loss; the guarantee is explicit.</p>
+    <div class="tbl-wrap">
+      <table>
+        <caption>Guarantees by acknowledgement mode</caption>
+        <thead>
+          <tr><th scope="col">Mode</th><th scope="col">Ack after</th><th scope="col">Survives</th><th scope="col">Write latency (p50)</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row"><span class="mono">acks=leader</span></th><td>leader on disk</td><td>leader restart</td><td class="num">1.8 ms</td></tr>
+          <tr><th scope="row"><span class="mono">acks=quorum</span></th><td>majority on disk</td><td><span class="tick">single-AZ loss</span></td><td class="num">4.6 ms</td></tr>
+          <tr><th scope="row"><span class="mono">acks=all</span></th><td>every replica</td><td><span class="tick">N−1 replica loss</span></td><td class="num">9.1 ms</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="spec-h">
+    <h2 id="spec-h">Limits &amp; specifications</h2>
+    <p class="muted">Hard limits of a single Ferrite cluster on the current release. Values are the product's
+      configured ceilings, not marketing figures.</p>
+    <dl class="spec">
+      <dt>Max message size</dt><dd><span class="num">1 MiB</span> (compressed on the wire)</dd>
+      <dt>Sustained throughput</dt><dd><span class="num">750,000</span> events/s per broker</dd>
+      <dt>Partitions per topic</dt><dd><span class="num">4,096</span></dd>
+      <dt>Retention window</dt><dd><span class="num">1 h</span> – <span class="num">30 d</span>, per topic</dd>
+      <dt>Ordering</dt><dd>Total order within a partition; none across partitions</dd>
+      <dt>Delivery semantics</dt><dd>At-least-once; exactly-once per partition with idempotent keys</dd>
+      <dt>Schema formats</dt><dd><span class="mono">protobuf</span>, <span class="mono">avro</span>, <span class="mono">json-schema</span></dd>
+      <dt>Replication factor</dt><dd><span class="num">1</span> – <span class="num">5</span> (default <span class="num">3</span>)</dd>
+    </dl>
+    <div class="actions">
+      <a class="btn" href="./pricing.html">See pricing</a>
+      <a class="btn ghost" href="./index.html">Back to overview</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>Ferrite — durable, typed event streaming. A fictional product concept.</span>
+    <span class="mono">docs · status · © 2026</span>
+  </div>
+</footer>
+</body>
+</html>

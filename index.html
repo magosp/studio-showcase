@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Selected work — brand & site concepts</title>
+<meta name="description" content="A small set of original, fictional brand and website concepts — each a self-contained static site in its own register." />
+<style>
+  @font-face { font-family:"Space Grotesk"; src:url("./assets/fonts/space-grotesk.woff2") format("woff2");
+    font-weight:300 700; font-display:swap; }
+  @font-face { font-family:"Inter"; src:url("./assets/fonts/inter.woff2") format("woff2");
+    font-weight:300 700; font-display:swap; }
+  :root {
+    --bg:#0d0d0f; --panel:#141417; --text:#f3f1ec; --muted:#a8a39a; --line:rgba(255,255,255,.11);
+    --accent:#d9b36c; --focus:#e7c98a;
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--bg); color:var(--text);
+    font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    min-height:100vh; display:flex; flex-direction:column; }
+  .wrap { width:100%; max-width:720px; margin-inline:auto; padding:clamp(28px,6vw,72px) clamp(20px,5vw,32px); flex:1; }
+  header .overline { font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin:0; }
+  header h1 { font-family:"Space Grotesk", sans-serif; font-weight:600; letter-spacing:-.01em;
+    font-size:clamp(1.9rem,5vw,2.6rem); line-height:1.1; margin:.5rem 0 0; max-width:16ch; }
+  header p.lede { color:var(--muted); margin:1rem 0 0; max-width:52ch; }
+  ul.works { list-style:none; margin:clamp(32px,7vw,64px) 0 0; padding:0;
+    border-top:1px solid var(--line); }
+  ul.works li { border-bottom:1px solid var(--line); }
+  a.work { display:grid; grid-template-columns:1fr auto; align-items:baseline; gap:.35rem 1.5rem;
+    padding:clamp(20px,3.5vw,30px) 0; text-decoration:none; color:inherit; position:relative; }
+  a.work:hover, a.work:focus-visible { outline:none; }
+  .work-name { font-family:"Space Grotesk", sans-serif; font-weight:600; font-size:clamp(1.5rem,4vw,2rem);
+    letter-spacing:-.01em; grid-column:1; transition:color .18s ease; }
+  .work-register { color:var(--muted); font-size:.98rem; grid-column:1; }
+  .work-go { grid-column:2; grid-row:1 / span 2; align-self:center; color:var(--muted);
+    font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; white-space:nowrap; transition:color .18s ease, transform .18s ease; }
+  a.work:hover .work-name, a.work:focus-visible .work-name { color:var(--accent); }
+  a.work:hover .work-go, a.work:focus-visible .work-go { color:var(--accent); transform:translateX(3px); }
+  a.work:focus-visible { box-shadow:0 0 0 2px var(--focus); border-radius:6px; }
+  footer { color:var(--muted); font-size:.85rem; border-top:1px solid var(--line);
+    padding:clamp(20px,4vw,28px) clamp(20px,5vw,32px); max-width:720px; margin-inline:auto; width:100%; }
+  @media (prefers-reduced-motion: reduce) { a.work *, a.work { transition:none !important; } }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="overline">Selected work</p>
+      <h1>Brand &amp; site concepts</h1>
+      <p class="lede">Three original, fictional brands — each designed and built as a self-contained
+        static site in a distinct register.</p>
+    </header>
+    <main>
+      <ul class="works">
+        <li>
+          <a class="work" href="ferrite/">
+            <span class="work-name">Ferrite</span>
+            <span class="work-register">Technical — a B2B product</span>
+            <span class="work-go" aria-hidden="true">View&#8202;&#8599;</span>
+          </a>
+        </li>
+        <li>
+          <a class="work" href="liokladi/">
+            <span class="work-name">Liokladi</span>
+            <span class="work-register">A self-contained site concept</span>
+            <span class="work-go" aria-hidden="true">View&#8202;&#8599;</span>
+          </a>
+        </li>
+        <li>
+          <a class="work" href="menom/">
+            <span class="work-name">MENOM</span>
+            <span class="work-register">Cinematic — a film promo</span>
+            <span class="work-go" aria-hidden="true">View&#8202;&#8599;</span>
+          </a>
+        </li>
+      </ul>
+    </main>
+  </div>
+  <footer>Original fictional concepts, built as static sites. No affiliation with any real company or product.</footer>
+</body>
+</html>

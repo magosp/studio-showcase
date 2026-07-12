@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ferrite — pricing tiers</title>
+<meta name="description" content="Ferrite pricing: Dev, Team, and Scale tiers. Throughput, retention, replication, and support per tier. Illustrative product tiers.">
+<link rel="stylesheet" href="./style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://magosp.github.io/studio/ferrite/pricing.html",
+      "url": "https://magosp.github.io/studio/ferrite/pricing.html",
+      "name": "Ferrite — pricing tiers",
+      "description": "Priced on provisioned throughput and retention, not on a per-message meter that punishes success.",
+      "isPartOf": {
+        "@id": "https://magosp.github.io/studio/ferrite#website"
+      },
+      "publisher": {
+        "@id": "https://magosp.github.io/studio/ferrite#organization"
+      }
+    }
+  ]
+}
+</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topnav">
+  <div class="wrap">
+    <span class="brand">Ferrite<span class="dot">.</span></span>
+    <span class="ver">v2.3</span>
+    <nav aria-label="Primary">
+      <a href="./index.html">Home</a>
+      <a href="./engine.html">Engine</a>
+      <a href="./pricing.html" aria-current="page">Pricing</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="wrap" aria-labelledby="pr-h">
+    <p class="eyebrow">Pricing</p>
+    <h1 id="pr-h">Three tiers. No per-event tax.</h1>
+    <p class="lede">Priced on provisioned throughput and retention, not on a per-message meter that punishes
+      success. Figures below are illustrative product tiers.</p>
+    <div class="pricing">
+      <article class="tier">
+        <h3>Dev</h3>
+        <p class="price">$0<small>/mo</small></p>
+        <p class="muted">A single-broker cluster for local and staging work.</p>
+        <ul>
+          <li><span class="num">10k</span> events/s</li>
+          <li><span class="num">24 h</span> retention</li>
+          <li>replication <span class="num">1</span></li>
+          <li>community support</li>
+        </ul>
+        <div class="actions"><a class="btn ghost" href="./engine.html">Read the spec</a></div>
+      </article>
+      <article class="tier featured">
+        <h3>Team</h3>
+        <p class="price">$490<small>/mo</small></p>
+        <p class="muted">Quorum durability and multi-AZ for a production workload.</p>
+        <ul>
+          <li><span class="num">150k</span> events/s</li>
+          <li><span class="num">7 d</span> retention</li>
+          <li>replication <span class="num">3</span>, multi-AZ</li>
+          <li>exactly-once per partition</li>
+          <li>business-hours support</li>
+        </ul>
+        <div class="actions"><a class="btn" href="./index.html">Get started</a></div>
+      </article>
+      <article class="tier">
+        <h3>Scale</h3>
+        <p class="price">Custom</p>
+        <p class="muted">Multi-region, dedicated brokers, and a retention window you set.</p>
+        <ul>
+          <li><span class="num">750k+</span> events/s</li>
+          <li>up to <span class="num">30 d</span> retention</li>
+          <li>replication <span class="num">5</span>, multi-region</li>
+          <li>99.95% uptime SLA</li>
+          <li>24/7 support</li>
+        </ul>
+        <div class="actions"><a class="btn ghost" href="./engine.html">Read the spec</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="mtx-h">
+    <h2 id="mtx-h">Feature matrix</h2>
+    <div class="tbl-wrap">
+      <table>
+        <caption>What is included per tier</caption>
+        <thead>
+          <tr><th scope="col">Feature</th><th scope="col">Dev</th><th scope="col">Team</th><th scope="col">Scale</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Throughput ceiling</th><td class="num">10k/s</td><td class="num">150k/s</td><td class="num">750k+/s</td></tr>
+          <tr><th scope="row">Retention</th><td class="num">24 h</td><td class="num">7 d</td><td class="num">30 d</td></tr>
+          <tr><th scope="row">Replication factor</th><td class="num">1</td><td class="num">3</td><td class="num">5</td></tr>
+          <tr><th scope="row">Exactly-once</th><td><span class="no">—</span></td><td><span class="tick">yes</span></td><td><span class="tick">yes</span></td></tr>
+          <tr><th scope="row">Multi-region</th><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="tick">yes</span></td></tr>
+          <tr><th scope="row">Uptime SLA</th><td class="no">—</td><td class="warn">99.9%</td><td class="tick">99.95%</td></tr>
+          <tr><th scope="row">Support</th><td>community</td><td>business hours</td><td>24/7</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="faq-h">
+    <h2 id="faq-h">FAQ</h2>
+    <dl class="spec">
+      <dt>Is there a per-event fee?</dt><dd>No. Tiers are priced on provisioned throughput and retention.
+        Volume within your tier ceiling is not metered per message.</dd>
+      <dt>Can I change tiers?</dt><dd>Yes — up or down at any time. Throughput and retention apply from the
+        next billing period; replication changes roll out without downtime.</dd>
+      <dt>Where does data live?</dt><dd>In the region you provision. Scale tiers can replicate across regions;
+        Dev and Team are single-region.</dd>
+      <dt>Do you meter schema registry calls?</dt><dd>No. The registry is part of every tier at no extra
+        charge.</dd>
+    </dl>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>Ferrite — durable, typed event streaming. A fictional product concept.</span>
+    <span class="mono">docs · status · © 2026</span>
+  </div>
+</footer>
+</body>
+</html>

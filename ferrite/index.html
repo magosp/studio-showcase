@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ferrite — a durable, typed event stream</title>
+<meta name="description" content="Ferrite is a durable event log with a built-in typed schema registry. At-least-once delivery, tunable to exactly-once per partition. Replayable by offset.">
+<link rel="stylesheet" href="./style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://magosp.github.io/studio/ferrite#organization",
+      "name": "Ferrite",
+      "description": "Ferrite is an append-only event log with a schema registry built in. Every event is validated against a versioned type before it is written. At-least-once delivery, tunable to exactly-once per partition. Replay any consumer from an offset .",
+      "url": "https://magosp.github.io/studio/ferrite"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://magosp.github.io/studio/ferrite#website",
+      "name": "Ferrite",
+      "description": "Ferrite is an append-only event log with a schema registry built in. Every event is validated against a versioned type before it is written. At-least-once delivery, tunable to exactly-once per partition. Replay any consumer from an offset .",
+      "url": "https://magosp.github.io/studio/ferrite",
+      "publisher": {
+        "@id": "https://magosp.github.io/studio/ferrite#organization"
+      }
+    }
+  ]
+}
+</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topnav">
+  <div class="wrap">
+    <span class="brand">Ferrite<span class="dot">.</span></span>
+    <span class="ver">v2.3</span>
+    <nav aria-label="Primary">
+      <a href="./index.html" aria-current="page">Home</a>
+      <a href="./engine.html">Engine</a>
+      <a href="./pricing.html">Pricing</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="wrap" aria-labelledby="hero-h">
+    <p class="eyebrow">Durable event stream</p>
+    <h1 id="hero-h">Typed events.<br>Durable by default.</h1>
+    <p class="lede">Ferrite is an append-only event log with a schema registry built in. Every event is
+      validated against a versioned type before it is written. At-least-once delivery, tunable to
+      exactly-once per partition. Replay any consumer from an <span class="mono">offset</span>.</p>
+    <div class="actions">
+      <a class="btn" href="./pricing.html">Get started</a>
+      <a class="btn ghost" href="./engine.html">Read the spec</a>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="props-h">
+    <h2 id="props-h">What it guarantees</h2>
+    <div class="grid">
+      <article class="card">
+        <p class="k">registry</p>
+        <h3>Typed by contract</h3>
+        <p>Producers publish against a registered schema. An event that fails validation is rejected at
+          write time, not discovered three services downstream.</p>
+      </article>
+      <article class="card">
+        <p class="k">delivery</p>
+        <h3>At-least-once, tunable</h3>
+        <p>Default at-least-once with idempotent producer keys; opt into exactly-once semantics per
+          partition when you need it. The trade-off is explicit, never hidden.</p>
+      </article>
+      <article class="card">
+        <p class="k">replay</p>
+        <h3>Replayable by offset</h3>
+        <p>The log is the source of truth. Rewind a consumer group to any retained
+          <span class="mono">offset</span> and reprocess deterministically.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="cmp-h">
+    <h2 id="cmp-h">Capability matrix</h2>
+    <p class="muted">How a durable typed log compares to the two shapes teams usually reach for first.
+      These are Ferrite's own capabilities, not a benchmark against any named product.</p>
+    <div class="tbl-wrap">
+      <table>
+        <caption>Ferrite vs a plain message queue vs an append-only log</caption>
+        <thead>
+          <tr><th scope="col">Capability</th><th scope="col">Ferrite</th><th scope="col">Plain queue</th><th scope="col">Append-only log</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Schema enforced at write</th><td><span class="tick">yes</span></td><td><span class="no">no</span></td><td><span class="no">no</span></td></tr>
+          <tr><th scope="row">Ordering</th><td>per-partition total</td><td><span class="no">none</span></td><td>total</td></tr>
+          <tr><th scope="row">Replay by offset</th><td><span class="tick">yes</span></td><td><span class="no">consumed = gone</span></td><td><span class="tick">yes</span></td></tr>
+          <tr><th scope="row">Delivery semantics</th><td>at-least / exactly-once</td><td>at-least-once</td><td><span class="warn">app-defined</span></td></tr>
+          <tr><th scope="row">Retention</th><td class="num">1h – 30d</td><td class="warn">until acked</td><td class="num">unbounded</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="code-h">
+    <h2 id="code-h">Publish a typed event</h2>
+    <p class="muted">A producer references a registered schema by name and version. The client library is
+      thin; the contract lives in the registry.</p>
+<pre tabindex="0" role="region" aria-label="Code sample: publish a typed event"><code><span class="tok-c"># publish against schema "order.placed" v3</span>
+<span class="tok-k">ferrite</span> publish orders \
+  --schema <span class="tok-s">order.placed@3</span> \
+  --key <span class="tok-s">"order-8f21"</span> \
+  --data <span class="tok-s">'{ "id": "8f21", "total_cents": 4200 }'</span>
+
+<span class="tok-c"># → written at offset</span> <span class="tok-k">142_998</span>, partition <span class="tok-k">3</span>, exactly-once
+</code></pre>
+    <div class="actions">
+      <a class="btn" href="./engine.html">See the durability guarantees</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>Ferrite — durable, typed event streaming. A fictional product concept.</span>
+    <span class="mono">docs · status · © 2026</span>
+  </div>
+</footer>
+</body>
+</html>
