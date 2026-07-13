@@ -1,9 +1,9 @@
 # DRENCH
 
-> DRENCH — a cinematic storefront concept for high-pressure water blasters. A full-bleed hero, a product grid
-> of four invented models, and an interactive cart with an illustrative checkout. An original, fictional
-> concept; no real product, price, or transaction.
+> DRENCH — a cinematic-commerce storefront for the DRENCH Mark I, a premium electric tactical water blaster
+> (drum-fed, pressure-rated, field-tested). Dark tactical register, hot-orange muzzle-glow accent. An original
+> fictional brand; no real transaction.
 
 ## Pages
-- [DRENCH](https://magosp.github.io/studio-showcase/drench/): pressure-rated water blasters — shop the range (Torrent X1, Deluge Pro,
-  Riptide Mini, Monsoon Max).
+- [DRENCH](https://magosp.github.io/studio-showcase/drench/): the DRENCH Mark I electric tactical water blaster — DEPLOY for CAD 129.00.
+  Specs, product configurator, interactive cart, illustrative checkout.

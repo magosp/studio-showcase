@@ -3,7 +3,7 @@
 A small portfolio of original, **fictional** brand and website concepts. Each is a self-contained,
 static site — hand-designed and built as an exercise in a distinct register.
 
-- **DRENCH** (`/drench/`) — Commerce — a product store.
+- **DRENCH** (`/drench/`) — Cinematic — a film promo.
 - **Ferrite** (`/ferrite/`) — Technical — a B2B product.
 - **Liokladi** (`/liokladi/`) — A self-contained site concept.
 - **MENOM** (`/menom/`) — Cinematic — a film promo.

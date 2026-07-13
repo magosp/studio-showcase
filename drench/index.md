@@ -1,12 +1,20 @@
-# DRENCH — pressure-rated water blasters
+# DRENCH — electric tactical water blaster
 
-Pressure-rated · field-tested. Cinematic-grade water blasters engineered for maximum saturation. A fictional
-storefront — an illustrative concept, no real product or transaction.
+DRENCH Mark I — a premium electric tactical water blaster. Drum-fed, pressure-rated, field-tested.
+Maximum saturation. Total garden dominance.
 
-## Shop the range
-- Torrent X1 — CAD 89.00 (2 variants)
-- Deluge Pro — CAD 139.00 (3 variants)
-- Riptide Mini — CAD 44.00 (1 variant)
-- Monsoon Max — CAD 189.00 (3 variants)
+## The unit
+- DRENCH Mark I — CAD 129.00 (in stock)
+- Finish: Smoked Graphite / Blackout / Hazard Orange
+- Reservoir: Standard 1.2 L / Extended 2.0 L
 
-The cart is an interactive island; checkout is an illustrative hosted-checkout handoff (no real transaction).
+## Specification (played straight)
+- Effective range: 11 m
+- Reservoir: 2.0 L
+- Rate of fire: 640 ml/s
+- Soak radius: 3.2 m
+- Charge time: 42 min
+- Drive: electric, sealed
+
+An original product concept. The cart runs on Mock.shop mechanics (illustrative hosted checkout); no real
+transaction is charged.
