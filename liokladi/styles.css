@@ -83,7 +83,7 @@ p { max-width:62ch; }
 
 .hero { position:relative; height:100svh; min-height:560px; display:flex; align-items:flex-end; overflow:hidden; }
 .hero-media { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-.hero-scrim { position:absolute; inset:0; background:linear-gradient(to top, var(--c-scrim), transparent 55%); }
+.hero-scrim { position:absolute; inset:0; background:linear-gradient(to top, rgba(18,16,10,.82) 0%, rgba(18,16,10,.58) 24%, rgba(18,16,10,.3) 46%, transparent 70%); }
 .hero-copy { position:relative; z-index:2; padding:clamp(20px,5vw,64px) clamp(20px,5vw,64px) var(--s-9); max-width:1200px; margin-inline:auto; width:100%; }
 .hero .eyebrow { color:var(--c-on-media); }
 .hero .eyebrow .tick { background:var(--c-gold); }

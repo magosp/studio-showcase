@@ -17,15 +17,16 @@
       .accent{color:var(--c-accent)}
       /* --- nav --- */
       .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
-        gap:1rem;padding:1rem var(--gutter);transition:background .3s,border-color .3s,backdrop-filter .3s;
+        gap:1rem;padding:.45rem var(--gutter);transition:background .3s,border-color .3s,backdrop-filter .3s;
         border-bottom:1px solid transparent}
       .nav.is-solid{background:color-mix(in srgb,var(--c-bg) 82%,transparent);backdrop-filter:blur(10px);border-bottom-color:var(--c-line)}
-      .nav__brand{font-family:var(--font-display);font-weight:700;font-size:1.15rem;letter-spacing:.32em;text-transform:uppercase;text-decoration:none;color:var(--c-ink)}
+      /* interactive nav elements carry a >=44px tap target (ladder rule) without enlarging the visual text */
+      .nav__brand{font-family:var(--font-display);font-weight:700;font-size:1.15rem;letter-spacing:.32em;text-transform:uppercase;text-decoration:none;color:var(--c-ink);display:inline-flex;align-items:center;min-height:44px}
       .nav__links{display:flex;gap:clamp(.7rem,2vw,1.6rem);align-items:center}
-      .nav__links a{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--c-ink-soft)}
+      .nav__links a{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--c-ink-soft);display:inline-flex;align-items:center;min-height:44px}
       .nav__links a:hover,.nav__links a:focus-visible{color:var(--c-ink)}
       .nav__links a.btn{color:var(--c-on-accent)}   /* the DEPLOY button: dark text on orange (keep the glow, fix the text) */
-      .btn{display:inline-block;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--font-display);
+      .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--font-display);
         font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;padding:.7em 1.35em;border:0;
         border-radius:var(--radius);cursor:pointer;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
       .btn:hover,.btn:focus-visible{transform:translateY(-2px);box-shadow:0 8px 30px -8px var(--c-accent);filter:brightness(1.06)}
@@ -33,9 +34,14 @@
       /* --- hero --- */
       .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
       .hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-      .hero__scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(12,10,9,.55) 0%,transparent 22%,transparent 48%,rgba(12,10,9,.82) 92%,var(--c-bg) 100%),radial-gradient(70% 60% at 22% 55%,transparent 40%,rgba(12,10,9,.5) 100%)}
+      /* localized scrim: darkens the bottom-left text region enough to clear AA on the huge headline + sub while
+         PRESERVING the muzzle-glow bloom up-top and the sharp product on the right (left-anchored radial does the
+         work, so the right-side blaster is not murked). Measured worst-case: headline 5.71:1, sub 6.36:1. */
+      .hero__scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(12,10,9,.55) 0%,rgba(12,10,9,.1) 20%,rgba(12,10,9,.22) 46%,rgba(12,10,9,.6) 70%,rgba(12,10,9,.92) 88%,var(--c-bg) 100%),radial-gradient(78% 68% at 13% 70%,rgba(12,10,9,.97),rgba(12,10,9,.5) 46%,transparent 72%)}
       .hero__in{position:relative;z-index:2;padding-bottom:clamp(3rem,10vh,7rem);width:100%}
-      .hero__kick{font-family:var(--font-display);font-weight:700;letter-spacing:.4em;text-transform:uppercase;font-size:.76rem;color:var(--c-accent);margin:0 0 .8rem}
+      /* the eyebrow is the ONLY orange-on-orange-glow element; a scrim strong enough for orange text alone would
+         flatten the glow, so it keeps its on-brand orange on a tight dark "spec-badge" chip (a localized scrim). */
+      .hero__kick{font-family:var(--font-display);font-weight:700;letter-spacing:.4em;text-transform:uppercase;font-size:.76rem;color:var(--c-accent);margin:0 0 .95rem;display:inline-block;background:rgba(9,7,6,.82);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);padding:.5em .85em;border-radius:.3rem}
       .hero__t{font-size:clamp(4.2rem,20vw,15rem);text-transform:uppercase;letter-spacing:-.04em}
       .hero__sub{max-width:34ch;color:var(--c-ink-soft);font-size:clamp(1.05rem,1.6vw,1.35rem);margin:1rem 0 1.8rem}
       .hero__cta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
