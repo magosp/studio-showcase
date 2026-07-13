@@ -61,12 +61,42 @@
       document.querySelectorAll('[data-motion~="scrub"]').forEach(function(el){
         var v = el.matches('video') ? el : el.querySelector('video');
         if (!v) { return; }
+        var mob = v.getAttribute('data-scrub-mobile-src');
+        if (mob && window.matchMedia && window.matchMedia('(max-width: 768px)').matches
+            && (v.currentSrc || '').indexOf(mob) === -1) {
+          try { v.src = mob; v.load(); } catch(_){}
+        }
         var span = parseFloat(el.getAttribute('data-scrub-span')) || 150;
         function wire(){
           try { v.pause(); } catch(_){}
-          ScrollTrigger.create({trigger:el, start:'top top', end:'+='+span+'%', pin:true,
-            pinSpacing:true, scrub:true,
-            onUpdate:function(self){ if (v.duration) { v.currentTime = self.progress * v.duration; } }});
+          var applied = -1, seeking = false, stalls = 0, dead = false, st = null;
+          v.addEventListener('seeked', function(){ seeking = false; stalls = 0; });
+
+
+
+          function rawScroll(){ var L = window.__lenis;
+            return (L && typeof L.targetScroll === 'number') ? L.targetScroll
+                 : (window.scrollY || window.pageYOffset || 0); }
+          function tick(){
+            if (dead) { return; }
+            var p = 0;
+            if (st && st.end > st.start) { p = (rawScroll() - st.start) / (st.end - st.start); }
+            if (p < 0) { p = 0; } else if (p > 1) { p = 1; }
+            var target = p * (v.duration || 0);
+            if (!seeking && Math.abs(target - applied) > 0.001) {
+              seeking = true; applied = target;
+              try { v.currentTime = target; } catch(_){ seeking = false; }
+            } else if (seeking && ++stalls > 240) {
+              dead = true; try { if (st) st.kill(); } catch(_){}; return;
+            }
+            requestAnimationFrame(tick);
+          }
+
+
+
+          st = ScrollTrigger.create({trigger:el, start:'top top', end:'+='+span+'%', pin:true,
+            pinSpacing:true});
+          requestAnimationFrame(tick);
         }
         if (v.readyState >= 1 && v.duration) { wire(); }
         else { v.addEventListener('loadedmetadata', wire, {once:true}); }
