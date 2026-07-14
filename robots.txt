@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://magosp.github.io/studio-showcase/sitemap.xml
